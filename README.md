@@ -1,12 +1,18 @@
 # The Tiny Encryption Algorithm.
 **Version:** `0.1.1`
 
-## Description:
-Tiny Encryption Algorithm (TEA) is a block cipher notable for its simplicity of
-description and implementation, typically a few lines of code. It was designed
-by David Wheeler and Roger Needham of the Cambridge Computer Laboratory; it was
-first presented at the Fast Software Encryption workshop in Leuven in 1994, and
-first published in the proceedings of that workshop.
+## Reference:
+```python
+>>> tea_encrypt(b'barbecue', b'\xb6\xb6\xb9\xf8Mj\xba\x0c\x91\x7f\t\x1e\xbe\xcc\xb1\xd0')
+b'>\x1d^2\xdc\x05\xe0D'
+>>> tea_decrypt(b'>\x1d^2\xdc\x05\xe0D', b'\xb6\xb6\xb9\xf8Mj\xba\x0c\x91\x7f\t\x1e\xbe\xcc\xb1\xd0')
+b'barbecue'
+
+>>> xtea_encrypt(b'american', b'Q\xaf\xc6\x17\xb5<\xd4\xc8\xfa\x0c\x88\xca\x95_\x9aV')
+b'\xaa\xb7\xa9\xb0\xab\xcd"\xd3'
+>>> xtea_decrypt(b'\xaa\xb7\xa9\xb0\xab\xcd"\xd3', b'Q\xaf\xc6\x17\xb5<\xd4\xc8\xfa\x0c\x88\xca\x95_\x9aV')
+b'american'
+```
 
 ## License:
 * [MIT License](LICENSE.md)
