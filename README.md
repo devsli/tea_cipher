@@ -3,7 +3,7 @@
 
 ## Usage:
 ```python
-import tea
+from tea import tea_encrypt, tea_decrypt
 
 plaintext = input('plaintext: ').encode('ascii', 'ignore')
 key = input('key: ').encode('ascii', 'ignore')
