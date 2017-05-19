@@ -7,7 +7,7 @@ Copyright Amezoure, 2017. All rights reserved.
 Distributed under the terms of the MIT license.
 '''
 
-__version__ = '0.1.1'
+__version__ = '0.2'
 
 __all__ = [
     # Standard TEA encrypting
@@ -29,11 +29,11 @@ def tea_encrypt(plaintext, key):
     @plaintext: 64 bits length bytes-like object.
     @key: 128 bits length bytes-like object.
 
-    Return a 64 bits encrypted string as a bytes object.
+    Return a 64 bits length bytes object.
     '''
 
-    v0, v1 = (uint(i) for i in unpack('=2I', plaintext))
-    k0, k1, k2, k3 = (uint(i) for i in unpack('=4I', key))
+    v0, v1 = (uint(i) for i in unpack('>2I', plaintext))
+    k0, k1, k2, k3 = (uint(i) for i in unpack('>4I', key))
     sm, delta = uint(0), uint(0x9E3779B9)
 
     for i in range(32):
@@ -41,7 +41,7 @@ def tea_encrypt(plaintext, key):
         v0.value += ((v1.value << 4) + k0.value) ^ (v1.value + sm.value) ^ ((v1.value >> 5) + k1.value)
         v1.value += ((v0.value << 4) + k2.value) ^ (v0.value + sm.value) ^ ((v0.value >> 5) + k3.value)
 
-    return pack('=2I', v0.value, v1.value)
+    return pack('>2I', v0.value, v1.value)
 
 
 def tea_decrypt(ciphertext, key):
@@ -51,11 +51,11 @@ def tea_decrypt(ciphertext, key):
     @ciphertext: 64 bits length bytes-like object.
     @key: 128 bits length bytes-like object.
 
-    Return a 64 bits decrypted string as a bytes object.
+    Return a 64 bits length bytes object.
     '''
 
-    v0, v1 = (uint(i) for i in unpack('=2I', ciphertext))
-    k0, k1, k2, k3 = (uint(i) for i in unpack('=4I', key))
+    v0, v1 = (uint(i) for i in unpack('>2I', ciphertext))
+    k0, k1, k2, k3 = (uint(i) for i in unpack('>4I', key))
     sm, delta = uint(0xC6EF3720), uint(0x9E3779B9)
 
     for i in range(32):
@@ -63,7 +63,7 @@ def tea_decrypt(ciphertext, key):
         v0.value -= ((v1.value << 4) + k0.value) ^ (v1.value + sm.value) ^ ((v1.value >> 5) + k1.value)
         sm.value -= delta.value
 
-    return pack('=2I', v0.value, v1.value)
+    return pack('>2I', v0.value, v1.value)
 
 
 def xtea_encrypt(plaintext, key):
@@ -73,11 +73,11 @@ def xtea_encrypt(plaintext, key):
     @plaintext: 64 bits length bytes-like object.
     @key: 128 bits length bytes-like object.
 
-    Return a 64 bits encrypted string as a bytes object.
+    Return a 64 bits length bytes object.
     '''
 
-    v0, v1 = (uint(i) for i in unpack('=2I', plaintext))
-    k = [uint(i) for i in unpack('=4I', key)]
+    v0, v1 = (uint(i) for i in unpack('>2I', plaintext))
+    k = [uint(i) for i in unpack('>4I', key)]
     sm, delta = uint(0), uint(0x9E3779B9)
 
     for i in range(32):
@@ -85,7 +85,7 @@ def xtea_encrypt(plaintext, key):
         sm.value += delta.value
         v1.value += (((v0.value << 4) ^ (v0.value >> 5)) + v0.value) ^ (sm.value + k[(sm.value >> 11) & 3].value)
 
-    return pack('=2I', v0.value, v1.value)
+    return pack('>2I', v0.value, v1.value)
 
 
 def xtea_decrypt(ciphertext, key):
@@ -95,11 +95,11 @@ def xtea_decrypt(ciphertext, key):
     @ciphertext: 64 bits length bytes-like object.
     @key: 128 bits length bytes-like object.
 
-    Return a 64 bits decrypted string as a bytes object.
+    Return a 64 bits length bytes object.
     '''
 
-    v0, v1 = (uint(i) for i in unpack('=2I', ciphertext))
-    k = [uint(i) for i in unpack('=4I', key)]
+    v0, v1 = (uint(i) for i in unpack('>2I', ciphertext))
+    k = [uint(i) for i in unpack('>4I', key)]
     sm, delta = uint(0xC6EF3720), uint(0x9E3779B9)
 
     for i in range(32):
@@ -107,4 +107,4 @@ def xtea_decrypt(ciphertext, key):
         sm.value -= delta.value
         v0.value -= (((v1.value << 4) ^ (v1.value >> 5)) + v1.value) ^ (sm.value + k[sm.value & 3].value)
 
-    return pack('=2I', v0.value, v1.value)
+    return pack('>2I', v0.value, v1.value)
