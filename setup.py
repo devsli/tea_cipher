@@ -10,9 +10,11 @@ setup(
     version=__version__,
     author='Amezoure',
     author_email='amezoure@gmail.com',
+    description='Simple and fast symmetric-key algorithm cipher',
     license='MIT',
     url='https://github.com/amezoure/tea',
     packages=find_packages(),
+    zip_safe=False,
     classifiers=(
         'Development Status :: 5 - Production/Stable',
         'License :: OSI Approved :: MIT License',

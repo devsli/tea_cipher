@@ -1,17 +1,24 @@
 # The Tiny Encryption Algorithm.
-**Version:** `0.2`
+_Simple and fast symmetric-key algorithm cipher_
+_Version:_ **0.2**
 
 ## Reference:
 ```python
->>> tea_encrypt(b'barbecue', b'\xb6\xb6\xb9\xf8Mj\xba\x0c\x91\x7f\t\x1e\xbe\xcc\xb1\xd0')
-b'\xe7v\xfd\x02\x8cj\xef\xc1'
->>> tea_decrypt(b'\xe7v\xfd\x02\x8cj\xef\xc1', b'\xb6\xb6\xb9\xf8Mj\xba\x0c\x91\x7f\t\x1e\xbe\xcc\xb1\xd0')
+>>> tea_encrypt(b'barbecue', b'good for nothing')
+b'\xa38\x82\xb7\xc6\xa6\xa8c'
+>>> tea_decrypt(b'\xa38\x82\xb7\xc6\xa6\xa8c', b'good for nothing')
 b'barbecue'
 
->>> xtea_encrypt(b'american', b'Q\xaf\xc6\x17\xb5<\xd4\xc8\xfa\x0c\x88\xca\x95_\x9aV')
-b'd\x01:\x0e\x93\xce\x8c8'
->>> xtea_decrypt(b'd\x01:\x0e\x93\xce\x8c8', b'Q\xaf\xc6\x17\xb5<\xd4\xc8\xfa\x0c\x88\xca\x95_\x9aV')
+>>> xtea_encrypt(b'american', b'vegetable garden')
+b'\x8c\x14\xa5\xab\x1b\n\xc4\xf0'
+>>> xtea_decrypt(b'\x8c\x14\xa5\xab\x1b\n\xc4\xf0', b'vegetable garden')
 b'american'
+```
+
+## Installation:
+```sh
+git clone git://github.com/amezoure/tea.git
+cd tea && python setup.py install
 ```
 
 ## License:

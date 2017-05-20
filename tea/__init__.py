@@ -3,17 +3,17 @@
 
 '''
 The Tiny Encryption Algorithm.
+Simple and fast symmetric-key algorithm cipher.
 Copyright Amezoure, 2017. All rights reserved.
-Distributed under the terms of the MIT license.
 '''
 
 __version__ = '0.2'
 
 __all__ = [
-    # Standard TEA encrypting
+    # Standard TEA encrypting:
     'tea_encrypt', 'tea_decrypt',
 
-    # eXtended TEA encrypting
+    # Extended TEA encrypting:
     'xtea_encrypt', 'xtea_decrypt'
 ]
 
@@ -26,8 +26,8 @@ def tea_encrypt(plaintext, key):
     '''
     Encrypt a plaintext using TEA algorithm.
 
-    @plaintext: 64 bits length bytes-like object.
-    @key: 128 bits length bytes-like object.
+    plaintext: 64 bits length bytes-like object.
+    key: 128 bits length bytes-like object.
 
     Return a 64 bits length bytes object.
     '''
@@ -48,8 +48,8 @@ def tea_decrypt(ciphertext, key):
     '''
     Decrypt a ciphertext using TEA algorithm.
 
-    @ciphertext: 64 bits length bytes-like object.
-    @key: 128 bits length bytes-like object.
+    ciphertext: 64 bits length bytes-like object.
+    key: 128 bits length bytes-like object.
 
     Return a 64 bits length bytes object.
     '''
@@ -70,8 +70,8 @@ def xtea_encrypt(plaintext, key):
     '''
     Encrypt a plaintext using XTEA algorithm.
 
-    @plaintext: 64 bits length bytes-like object.
-    @key: 128 bits length bytes-like object.
+    plaintext: 64 bits length bytes-like object.
+    key: 128 bits length bytes-like object.
 
     Return a 64 bits length bytes object.
     '''
@@ -92,8 +92,8 @@ def xtea_decrypt(ciphertext, key):
     '''
     Decrypt a ciphertext using XTEA algorithm.
 
-    @ciphertext: 64 bits length bytes-like object.
-    @key: 128 bits length bytes-like object.
+    ciphertext: 64 bits length bytes-like object.
+    key: 128 bits length bytes-like object.
 
     Return a 64 bits length bytes object.
     '''
