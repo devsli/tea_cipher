@@ -1,6 +1,5 @@
 # The Tiny Encryption Algorithm.
 _Simple and fast symmetric-key algorithm cipher_
-_Version:_ **0.2**
 
 ## Reference:
 ```python
