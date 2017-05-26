@@ -18,7 +18,7 @@ __all__ = [
 ]
 
 
-from ctypes import c_uint32 as uint
+from ctypes import c_uint32 as uint32
 from struct import pack, unpack
 
 
@@ -32,9 +32,9 @@ def tea_encrypt(plaintext, key):
     Return a 64 bits length bytes object.
     '''
 
-    v0, v1 = (uint(i) for i in unpack('>2I', plaintext))
-    k0, k1, k2, k3 = (uint(i) for i in unpack('>4I', key))
-    sm, delta = uint(0), uint(0x9E3779B9)
+    v0, v1 = (uint32(i) for i in unpack('>2I', plaintext))
+    k0, k1, k2, k3 = (uint32(i) for i in unpack('>4I', key))
+    sm, delta = uint32(0), uint32(0x9E3779B9)
 
     for i in range(32):
         sm.value += delta.value
@@ -54,9 +54,9 @@ def tea_decrypt(ciphertext, key):
     Return a 64 bits length bytes object.
     '''
 
-    v0, v1 = (uint(i) for i in unpack('>2I', ciphertext))
-    k0, k1, k2, k3 = (uint(i) for i in unpack('>4I', key))
-    sm, delta = uint(0xC6EF3720), uint(0x9E3779B9)
+    v0, v1 = (uint32(i) for i in unpack('>2I', ciphertext))
+    k0, k1, k2, k3 = (uint32(i) for i in unpack('>4I', key))
+    sm, delta = uint32(0xC6EF3720), uint32(0x9E3779B9)
 
     for i in range(32):
         v1.value -= ((v0.value << 4) + k2.value) ^ (v0.value + sm.value) ^ ((v0.value >> 5) + k3.value)
@@ -76,9 +76,9 @@ def xtea_encrypt(plaintext, key):
     Return a 64 bits length bytes object.
     '''
 
-    v0, v1 = (uint(i) for i in unpack('>2I', plaintext))
-    k = [uint(i) for i in unpack('>4I', key)]
-    sm, delta = uint(0), uint(0x9E3779B9)
+    v0, v1 = (uint32(i) for i in unpack('>2I', plaintext))
+    k = list(uint32(i) for i in unpack('>4I', key))
+    sm, delta = uint32(0), uint32(0x9E3779B9)
 
     for i in range(32):
         v0.value += (((v1.value << 4) ^ (v1.value >> 5)) + v1.value) ^ (sm.value + k[sm.value & 3].value)
@@ -98,9 +98,9 @@ def xtea_decrypt(ciphertext, key):
     Return a 64 bits length bytes object.
     '''
 
-    v0, v1 = (uint(i) for i in unpack('>2I', ciphertext))
-    k = [uint(i) for i in unpack('>4I', key)]
-    sm, delta = uint(0xC6EF3720), uint(0x9E3779B9)
+    v0, v1 = (uint32(i) for i in unpack('>2I', ciphertext))
+    k = list(uint32(i) for i in unpack('>4I', key))
+    sm, delta = uint32(0xC6EF3720), uint32(0x9E3779B9)
 
     for i in range(32):
         v1.value -= (((v0.value << 4) ^ (v0.value >> 5)) + v0.value) ^ (sm.value + k[(sm.value >> 11) & 3].value)

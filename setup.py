@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from setuptools import setup, find_packages
+from setuptools import setup
 from tea import __version__
 
 
@@ -13,7 +13,7 @@ setup(
     description='Simple and fast symmetric-key algorithm cipher',
     license='MIT',
     url='https://github.com/amezoure/tea',
-    packages=find_packages(),
+    packages=['tea'],
     zip_safe=False,
     classifiers=(
         'Development Status :: 5 - Production/Stable',
