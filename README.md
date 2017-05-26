@@ -22,12 +22,12 @@ python setup.py install
 ```
 
 ## Properties:
-TEA has a few weaknesses. Most notably, it suffers from equivalent keys-each key
-is equivalent to three others, which means that the effective key size is only
-`126` bits. As a result, TEA is **especially bad as a cryptographic hash
-function**. TEA is also susceptible to a related-key attack which requires `223`
-chosen plaintexts under a related-key pair, with 232 time complexity. Because of
-these weaknesses, the XTEA cipher was designed.
+TEA has a few weaknesses. Most notably, it suffers from equivalent keys-each
+key is equivalent to three others, which means that the effective key size is
+only `126` bits. As a result, TEA is **especially bad as a cryptographic hash
+function**. TEA is also susceptible to a related-key attack which requires
+`8388608` chosen plaintexts under a related-key pair, with `8388608` time
+complexity. Because of these weaknesses, the XTEA cipher was designed.
 
 ## License:
 * [MIT License](LICENSE.md)
