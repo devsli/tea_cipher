@@ -2,14 +2,14 @@
 # -*- coding: utf-8 -*-
 
 from setuptools import setup
-from tea import __version__
+from tea_cipher import __version__
 
 
 with open('README.rst', 'rt') as doc:
     long_description = doc.read()
 
 setup(
-    name='tea',
+    name='tea_cipher',
     version=__version__,
     author='Amezoure',
     author_email='amezoure@gmail.com',
@@ -17,7 +17,7 @@ setup(
     long_description=long_description,
     license='MIT',
     url='https://github.com/amezoure/tea_cipher',
-    packages=['tea'],
+    packages=['tea_cipher'],
     zip_safe=False,
     classifiers=[
         'Development Status :: 5 - Production/Stable',
