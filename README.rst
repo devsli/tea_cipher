@@ -22,8 +22,7 @@ Installation:
 
     # from GitHub:
     git clone git://github.com/amezoure/tea_cipher.git
-    cd tea
-    python setup.py install
+    cd tea_cipher && python setup.py install
 
     # or just from PyPI:
     pip install --upgrade tea_cipher
@@ -34,5 +33,5 @@ TEA has a few weaknesses. Most notably, it suffers from equivalent keys-each
 key is equivalent to three others, which means that the effective key size is
 only 126 bits. As a result, TEA is **especially bad as a cryptographic hash
 function**. TEA is also susceptible to a related-key attack which requires
-8388608 chosen plaintexts under a related-key pair, with 8388608 time
+8388608 chosen plaintexts under a related-key pair, with 4294967296 time
 complexity. Because of these weaknesses, the XTEA cipher was designed.

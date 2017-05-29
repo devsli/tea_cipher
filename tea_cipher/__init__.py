@@ -4,16 +4,16 @@
 '''
 The Tiny Encryption Algorithm.
 Simple and fast symmetric-key algorithm cipher.
-Copyright Amezoure, 2017. All rights reserved.
+
+Functions:
+    tea_encrypt(), tea_decrypt() -- standard TEA encrypting.
+    xtea_encrypt(), xtea_decrypt() -- extended TEA encrypting.
 '''
 
-__version__ = '0.2'
+__version__ = '0.3.1'
 
 __all__ = [
-    # Standard TEA encrypting:
     'tea_encrypt', 'tea_decrypt',
-
-    # Extended TEA encrypting:
     'xtea_encrypt', 'xtea_decrypt'
 ]
 
