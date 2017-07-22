@@ -10,7 +10,7 @@ Functions:
     xtea_encrypt(), xtea_decrypt() -- extended TEA encrypting.
 '''
 
-__version__ = '0.3.1'
+__version__ = '0.3.2'
 
 __all__ = [
     'tea_encrypt', 'tea_decrypt',
@@ -32,8 +32,8 @@ def tea_encrypt(plaintext, key):
     Return a 64 bits length bytes object.
     '''
 
-    v0, v1 = (uint32(i) for i in unpack('>2I', plaintext))
-    k0, k1, k2, k3 = (uint32(i) for i in unpack('>4I', key))
+    v0, v1 = map(uint32, unpack('>2I', plaintext))
+    k0, k1, k2, k3 = map(uint32, unpack('>4I', key))
     sm, delta = uint32(0), uint32(0x9E3779B9)
 
     for i in range(32):
@@ -54,8 +54,8 @@ def tea_decrypt(ciphertext, key):
     Return a 64 bits length bytes object.
     '''
 
-    v0, v1 = (uint32(i) for i in unpack('>2I', ciphertext))
-    k0, k1, k2, k3 = (uint32(i) for i in unpack('>4I', key))
+    v0, v1 = map(uint32, unpack('>2I', ciphertext))
+    k0, k1, k2, k3 = map(uint32, unpack('>4I', key))
     sm, delta = uint32(0xC6EF3720), uint32(0x9E3779B9)
 
     for i in range(32):
@@ -76,8 +76,8 @@ def xtea_encrypt(plaintext, key):
     Return a 64 bits length bytes object.
     '''
 
-    v0, v1 = (uint32(i) for i in unpack('>2I', plaintext))
-    k = list(uint32(i) for i in unpack('>4I', key))
+    v0, v1 = map(uint32, unpack('>2I', plaintext))
+    k = tuple(uint32(i) for i in unpack('>4I', key))
     sm, delta = uint32(0), uint32(0x9E3779B9)
 
     for i in range(32):
@@ -98,8 +98,8 @@ def xtea_decrypt(ciphertext, key):
     Return a 64 bits length bytes object.
     '''
 
-    v0, v1 = (uint32(i) for i in unpack('>2I', ciphertext))
-    k = list(uint32(i) for i in unpack('>4I', key))
+    v0, v1 = map(uint32, unpack('>2I', ciphertext))
+    k = tuple(uint32(i) for i in unpack('>4I', key))
     sm, delta = uint32(0xC6EF3720), uint32(0x9E3779B9)
 
     for i in range(32):
