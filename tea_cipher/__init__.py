@@ -17,7 +17,7 @@ from ctypes import c_uint32 as uint32
 from struct import pack, unpack
 
 
-def tea_encrypt(plaintext, key):
+def tea_encrypt(plaintext, key, delta=0x9E3779B9):
     '''
     Encrypt a plaintext using TEA algorithm.
 
@@ -29,7 +29,7 @@ def tea_encrypt(plaintext, key):
 
     v0, v1 = map(uint32, unpack('>2I', plaintext))
     k0, k1, k2, k3 = map(uint32, unpack('>4I', key))
-    sm, delta = uint32(0), uint32(0x9E3779B9)
+    sm, delta = uint32(0), uint32(delta)
 
     for i in range(32):
         sm.value += delta.value
@@ -39,7 +39,7 @@ def tea_encrypt(plaintext, key):
     return pack('>2I', v0.value, v1.value)
 
 
-def tea_decrypt(ciphertext, key):
+def tea_decrypt(ciphertext, key, delta=0x9E3779B9):
     '''
     Decrypt a ciphertext using TEA algorithm.
 
@@ -51,7 +51,7 @@ def tea_decrypt(ciphertext, key):
 
     v0, v1 = map(uint32, unpack('>2I', ciphertext))
     k0, k1, k2, k3 = map(uint32, unpack('>4I', key))
-    sm, delta = uint32(0xC6EF3720), uint32(0x9E3779B9)
+    sm, delta = uint32(0xC6EF3720), uint32(delta)
 
     for i in range(32):
         v1.value -= ((v0.value << 4) + k2.value) ^ (v0.value + sm.value) ^ ((v0.value >> 5) + k3.value)
